@@ -1,0 +1,122 @@
+extends Layout
+
+block content
+
+  body.hold-transition.skin-blue.sidebar-mini
+    .wrapper
+    
+    
+      header.main-header
+        // Logo
+        a.logo(href='#')
+          // mini logo for sidebar mini 50x50 pixels
+          span.logo-mini
+            b IBM
+          // logo for regular state and mobile devices
+          span.logo-lg
+            b IBM
+            | Automobile
+        // Header Navbar: style can be found in header.less
+        nav.navbar.navbar-static-top
+          // Sidebar toggle button
+          a.sidebar-toggle(href='#', data-toggle='push-menu', role='button')
+            span.sr-only Toggle navigation
+          .navbar-custom-menu
+            
+            
+            
+      // Left side column. contains the logo and sidebar
+      aside.main-sidebar
+        // sidebar: style can be found in sidebar.less
+        section.sidebar
+          // Sidebar user panel
+          .user-panel
+            .pull-left.image
+              img.img-circle(src='dist/img/user2-160x160.jpg', alt='User Image')
+            .pull-left.info
+              p Maxime Golfier
+              
+          // sidebar menu: : style can be found in sidebar.less
+          ul.sidebar-menu(data-widget='tree')
+            li.header Navigation
+            li.active.treeview
+              a(href='#')
+                i.fa.fa-dashboard
+                span Dashboard  
+        // /.sidebar
+        
+        
+        
+      // Content Wrapper. Contains page content
+      .content-wrapper
+        // Content Header (Page header)
+        section.content-header
+          h1
+            | Dashboard
+            small Control panel
+          ol.breadcrumb
+            li
+              a(href='#')
+                i.fa.fa-dashboard
+                |  Home
+            li.active Dashboard
+            
+            
+        // Main content
+        section.content
+        // /.content
+        
+        
+        
+        
+      // /.content-wrapper
+      footer.main-footer
+        .pull-right.hidden-xs
+          b Version
+          |  1.0.0
+        strong
+          | Copyright © 2017 
+          a(href='https://www.ibm.com/fr-fr/') IBM FRANCE
+        |  All rights
+        |     reserved.
+        
+    
+    // ./wrapper
+  
+    //SCRIPTS
+    // jQuery 3
+    script(src='bower_components/jquery/dist/jquery.min.js')
+    // jQuery UI 1.11.4
+    script(src='bower_components/jquery-ui/jquery-ui.min.js')
+    // Resolve conflict in jQuery UI tooltip with Bootstrap tooltip
+    script.
+      $.widget.bridge('uibutton', $.ui.button);
+    // Bootstrap 3.3.7
+    script(src='bower_components/bootstrap/dist/js/bootstrap.min.js')
+    // Morris.js charts
+    script(src='bower_components/raphael/raphael.min.js')
+    script(src='bower_components/morris.js/morris.min.js')
+    // Sparkline
+    script(src='bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')
+    // jvectormap
+    script(src='plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')
+    script(src='plugins/jvectormap/jquery-jvectormap-world-mill-en.js')
+    // jQuery Knob Chart
+    script(src='bower_components/jquery-knob/dist/jquery.knob.min.js')
+    // daterangepicker
+    script(src='bower_components/moment/min/moment.min.js')
+    script(src='bower_components/bootstrap-daterangepicker/daterangepicker.js')
+    // datepicker
+    script(src='bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')
+    // Bootstrap WYSIHTML5
+    script(src='plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')
+    // Slimscroll
+    script(src='bower_components/jquery-slimscroll/jquery.slimscroll.min.js')
+    // FastClick
+    script(src='bower_components/fastclick/lib/fastclick.js')
+    // AdminLTE App
+    script(src='dist/js/adminlte.min.js')
+    // AdminLTE dashboard demo (This is only for demo purposes)
+    script(src='dist/js/pages/dashboard.js')
+    // AdminLTE for demo purposes
+    script(src='dist/js/demo.js')
