@@ -8,11 +8,13 @@
   "dependencies": {
     "admin-lte": "^2.4.2",
     "body-parser": "~1.18.2",
+    "cloudant": "^1.10.0",
     "consolidate": "^0.15.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
     "pug": "^2.0.0-rc.4",
