@@ -32,11 +32,15 @@
 
             <div class="form-group">
               <label>Identifiant</label>
-              <input type="text" class="form-control" placeholder="Identifiant...">
+              <input type="text" id="id" class="form-control">
             </div>
             <div class="form-group">
               <label>Nom</label>
-              <input type="text" class="form-control" placeholder="Nom...">
+              <input type="text" id="name" class="form-control">
+            </div>
+
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary" id="add_button">Ajouter</button>
             </div>
 
           </form>
@@ -48,4 +52,21 @@
     <!-- /.content -->
 
   </div>
+  <script>
+    //Submit data when enter key is pressed
+    $('#add_button').on('click', function(e) {
+      var name = $('#name').val();
+      var id = $('#id').val();
+      $.ajax({
+          method: "POST",
+          url: "./register_actor",
+          contentType: "application/json",
+          data: JSON.stringify({name: name,
+                                id: id})
+        }).done(function(data) {
+            console.log(data);
+        });
+      });
+  </script>
+
 <% include partials/foot %>
