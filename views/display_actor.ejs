@@ -30,15 +30,16 @@
       <div class="box-body">
           <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-              <tr>
-                <th>ID</th>
-                <th>Nom</th>
-              </tr>
-              <tr>
-                <td>183</td>
-                <td>John Doe</td>
-              </tr>
+            <table class="table table-hover" id="myTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nom</th>
+                </tr>
+              </thead>
+              <tbody id="myTable_body">
+
+              </tbody>
             </table>
           </div>
           <!-- /.box-body -->
@@ -51,3 +52,18 @@
 
 </div>
 <% include partials/foot %>
+
+<script>
+    //Retreive all the visitors from the database
+    $(document).ready(function() {
+        $.get("/get_actor")
+        .done(function(data) {
+            console.log(data);
+            for(var i=0;i<data.length;i++) {
+                var td1="<tr><td>"+data[i]["id"]+"</td>";
+                var td2="<td>"+data[i]["name"]+"</td></tr>";
+                $("#myTable_body").append(td1+td2);
+            }
+        });
+    });
+</script>
