@@ -33,8 +33,10 @@
             <table class="table table-hover" id="myTable">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Nom</th>
+                    <th>ID Cloudant</th>
+                    <th>Identifiant</th>
+                    <th>Nom</th>
+                    <th></th>
                 </tr>
               </thead>
               <tbody id="myTable_body">
@@ -54,16 +56,33 @@
 <% include partials/foot %>
 
 <script>
-    //Retreive all the visitors from the database
     $(document).ready(function() {
+
         $.get("/get_actor")
         .done(function(data) {
             console.log(data);
             for(var i=0;i<data.length;i++) {
-                var td1="<tr><td>"+data[i]["id"]+"</td>";
-                var td2="<td>"+data[i]["name"]+"</td></tr>";
-                $("#myTable_body").append(td1+td2);
+                var td1='<tr id="item_'+data[i]["id_cloudant"]+'"><td>'+data[i]["id_cloudant"]+'</td>';
+                var td2='<td>'+data[i]["id"]+'</td>';
+                var td3='<td>'+data[i]["name"]+'</td>';
+                var td4='<td><button id="button_delete_'+data[i]["id_cloudant"]+'" value="'+data[i]["id_cloudant"]+'" class="btn btn-danger delete_button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>';
+                $("#myTable_body").append(td1+td2+td3+td4);
             }
         });
+
+        $(document).on("click", '.delete_button',function(e) {
+            var id_cloudant = this.value;
+            console.log(id_cloudant);
+            $.ajax({
+              method: "DELETE",
+              url: "/get_actor",
+              contentType: "application/json",
+              data: JSON.stringify({id_cloudant: id_cloudant})
+            }).done(function(id) {
+                console.log(id);
+                $("#item_"+id).remove();
+            });
+        });
+
     });
 </script>
