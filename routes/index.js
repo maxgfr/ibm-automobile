@@ -77,7 +77,7 @@ io.on('connection', function(socket){
     socket.on('new_message', function(msg){
         console.log('Le message: ' + msg);
         io.emit('new_message', msg);
-        /*if(!conversation) {
+        if(!conversation) {
             res.send("Pas de conversation...");
             return;
         }
@@ -90,7 +90,7 @@ io.on('connection', function(socket){
            } else {
                io.emit('new_message', response);
                //console.log(JSON.stringify(response, null, 2));
-           }*/
+           }
        });
     });
 });
