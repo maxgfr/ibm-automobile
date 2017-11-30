@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var app = express()
+  , http = require('http')
+  , server = http.createServer(app)
+  , io = require('socket.io').listen(server);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -68,23 +72,8 @@ router.delete('/get_actor', function(req, res, next) {
 });
 /**** CLOUDANT ****/
 
-router.post('/', function(req, res, next) {
-
-  if(!conversation) {
-    res.send("Pas de conversation...");
-    return;
-  }
-
-  conversation.message({
-    input: { text: 'What\'s the weather?' },
-    workspace_id: '<workspace id>'
-   }, function(err, response) {
-       if (err) {
-         console.error(err);
-       } else {
-         console.log(JSON.stringify(response, null, 2));
-       }
-  });
+io.on('connection', function(socket){
+    console.log('connection done');
 
 });
 
