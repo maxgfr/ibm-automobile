@@ -20,6 +20,7 @@
     "morgan": "~1.9.0",
     "pug": "^2.0.0-rc.4",
     "serve-favicon": "~2.4.5",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "watson-developer-cloud": "^2.42.0"
   }
 }

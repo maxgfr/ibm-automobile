@@ -14,6 +14,7 @@ router.get('/register_actor', function(req, res, next) {
   res.render('register_actor');
 });
 
+/**** CLOUDANT  ****/
 router.post('/register_actor', function(req, res, next) {
   var userName = req.body.name;
   var id = req.body.id;
@@ -62,6 +63,27 @@ router.delete('/get_actor', function(req, res, next) {
         res.json(id);
       });
     }
+  });
+
+});
+/**** CLOUDANT ****/
+
+router.post('/', function(req, res, next) {
+
+  if(!conversation) {
+    res.send("Pas de conversation...");
+    return;
+  }
+
+  conversation.message({
+    input: { text: 'What\'s the weather?' },
+    workspace_id: '<workspace id>'
+   }, function(err, response) {
+       if (err) {
+         console.error(err);
+       } else {
+         console.log(JSON.stringify(response, null, 2));
+       }
   });
 
 });

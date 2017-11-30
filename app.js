@@ -13,11 +13,11 @@ var app = express();
 var http = require('http');
 var cfenv = require("cfenv");
 
-/***** Cloudant part *****/
+/***** IBM part *****/
 var vcapLocal; // load local VCAP configuration  and service credentials
 try {
   vcapLocal = require('./vcap-local.json');
-  console.log("Loaded local VCAP", vcapLocal);
+  //console.log("Loaded local VCAP", vcapLocal);
 } catch (e) { }
 
 const appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
@@ -49,7 +49,20 @@ if (appEnv.services['cloudantNoSQLDB'] || appEnv.getService(/cloudant/)) {
   // Specify the database we are going to use (mydb)...
   mydb = cloudant.db.use(dbName);
 }
-/***** Cloudant part *****/
+
+if (appEnv.services['conversation']) {
+  // Load the Watson Conversation library.
+  var ConversationV1 = require('watson-developer-cloud/conversation/v1');
+
+  // Initialize database with credentials
+  conservation = new ConversationV1({
+    username: appEnv.services['conversation'][0].credentials.username,
+    password: appEnv.services['conversation'][0].credentials.password,
+    version_date: ConversationV1.VERSION_DATE_2017_05_26
+  });
+}
+
+/***** IBM part *****/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
