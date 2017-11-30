@@ -1,16 +1,27 @@
 {
- "services": {
-   "cloudantNoSQLDB": [
-     {
-       "credentials": {
-          "username": "e1597c13-3370-4660-a1f5-6a342bf6de50-bluemix",
-          "password": "542a0cad9bb0e673478b7de3e4975bec3137117e86c0f9b0f83ff858b2d3fe93",
-          "host": "e1597c13-3370-4660-a1f5-6a342bf6de50-bluemix.cloudant.com",
-          "port": 443,
-          "url": "https://e1597c13-3370-4660-a1f5-6a342bf6de50-bluemix:542a0cad9bb0e673478b7de3e4975bec3137117e86c0f9b0f83ff858b2d3fe93@e1597c13-3370-4660-a1f5-6a342bf6de50-bluemix.cloudant.com"
-        },
-       "label": "cloudantNoSQLDB"
-     }
-   ]
- }
+    "services":
+    {
+        "cloudantNoSQLDB":
+        [{
+            "credentials":
+            {
+                "username": "e1597c13-3370-4660-a1f5-6a342bf6de50-bluemix",
+                "password": "542a0cad9bb0e673478b7de3e4975bec3137117e86c0f9b0f83ff858b2d3fe93",
+                "host": "e1597c13-3370-4660-a1f5-6a342bf6de50-bluemix.cloudant.com",
+                "port": 443,
+                "url": "https://e1597c13-3370-4660-a1f5-6a342bf6de50-bluemix:542a0cad9bb0e673478b7de3e4975bec3137117e86c0f9b0f83ff858b2d3fe93@e1597c13-3370-4660-a1f5-6a342bf6de50-bluemix.cloudant.com"
+            },
+            "label": "cloudantNoSQLDB"
+        }],
+        "conversation":
+        [{
+            "credentials":
+            {
+              "url": "https://gateway.watsonplatform.net/conversation/api",
+              "username": "87583433-aef0-49c1-ba54-67ce4281ffb4",
+              "password": "CEBTyeWKhnkI"
+            },
+            "label": "conversation"
+        }]
+    }
 }
