@@ -74,7 +74,24 @@ router.delete('/get_actor', function(req, res, next) {
 
 io.on('connection', function(socket){
     console.log('connection done');
-
+    socket.on('new_message', function(msg){
+        console.log('Le message: ' + msg);
+        io.emit('new_message', msg);
+        if(!conversation) {
+            res.send("Pas de conversation...");
+            return;
+        }
+        conversation.message({
+            input: { text: 'What\'s the weather?' },
+            workspace_id: '<workspace id>'
+        }, function(err, response) {
+            if (err) {
+               console.error(err);
+           } else {
+               console.log(JSON.stringify(response, null, 2));
+           }
+       });
+    });
 });
 
 module.exports = router;
