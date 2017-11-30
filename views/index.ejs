@@ -64,14 +64,14 @@
         }
     });
     $(function () {
-        var socket = io();
+        var socket = io.connect( "http://localhost:4200");
         $(document).on("click", '#send_message',function(e) {
             if ($('#the_message').val() != "") {
                 socket.emit('new_message', $('#the_message').val());
                 var currentdate = new Date();
                 var my_message_to_display = '<div class="direct-chat-msg">'+
                                                 '<div class="direct-chat-info clearfix">' +
-                                                    '<span class="direct-chat-name pull-left">Moi</span>'+
+                                                    '<span class="direct-chat-name pull-left">Maxime Golfier</span>'+
                                                     '<span class="direct-chat-timestamp pull-right">'+ currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/" + currentdate.getFullYear() + " @ "  + currentdate.getHours() + ":"  + currentdate.getMinutes() + ":" + currentdate.getSeconds()+'</span>'+
                                                 '</div>'+
                                                 '<img class="direct-chat-img" src="https://www.wizbii.com/profile/maxime-golfier/avatar/large" alt="Moi">'+
@@ -80,6 +80,7 @@
                                                 '</div>'+
                                             '</div>';
                 $('#chat').append(my_message_to_display);
+                $("#chat").animate({ scrollTop: $("#chat")[0].scrollHeight});
                 $('#the_message').val('');
                 return false;
             }
@@ -89,15 +90,16 @@
             var currentdate = new Date();
             var my_message_to_display = '<div class="direct-chat-msg right">'+
                                             '<div class="direct-chat-info clearfix">' +
-                                                '<span class="direct-chat-name pull-right">Moi</span>'+
+                                                '<span class="direct-chat-name pull-right">Watson</span>'+
                                                 '<span class="direct-chat-timestamp pull-left">'+ currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/" + currentdate.getFullYear() + " @ "  + currentdate.getHours() + ":"  + currentdate.getMinutes() + ":" + currentdate.getSeconds()+'</span>'+
                                             '</div>'+
-                                            '<img class="direct-chat-img" "https://www.wizbii.com/profile/maxime-golfier/avatar/large" alt="Moi">'+
+                                            '<img class="direct-chat-img" src="https://www-356.ibm.com/partnerworld/wps/static/watsonbuild/img/Watson_Avatar_Pos_BlueTeal_RGB.png" alt="Moi">'+
                                             '<div class="direct-chat-text">' +
-                                                $('#the_message').val()
+                                                msg +
                                             '</div>'+
                                         '</div>';
             $('#chat').append(my_message_to_display);
+            $("#chat").animate({ scrollTop: $("#chat")[0].scrollHeight});
         });
     });
 </script>

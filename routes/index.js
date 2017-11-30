@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
-var app = require('express')();
+/* Socket.io*/
+var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+/* Socket.io*/
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
@@ -72,27 +72,32 @@ router.delete('/get_actor', function(req, res, next) {
 });
 /**** CLOUDANT ****/
 
+/**** CONVERSATION ****/
 io.on('connection', function(socket){
     console.log('Connexion effectuée');
     socket.on('new_message', function(msg){
-        console.log('Le message: ' + msg);
-        io.emit('new_message', msg);
+        //console.log('Le message: ' + msg);
+        //io.emit('new_message', msg);
         if(!conversation) {
             res.send("Pas de conversation...");
             return;
         }
         conversation.message({
-            input: { text: 'msg' },
+            input: { text: msg },
             workspace_id: '4f4f881e-d5c9-484e-ba14-1e73ba9dce8c'
         }, function(err, response) {
             if (err) {
                console.error(err);
            } else {
-               io.emit('new_message', response);
-               //console.log(JSON.stringify(response, null, 2));
+               //console.log(response);
+               //console.log(response.output);
+               io.emit('new_message', response.output.text);
            }
        });
     });
 });
+
+server.listen(4200);
+/**** CONVERSATION ****/
 
 module.exports = router;

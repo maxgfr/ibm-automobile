@@ -54,11 +54,12 @@ if (appEnv.services['conversation']) {
   var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 
   // Initialize database with credentials
-  conservation = new ConversationV1({
+  conversation = new ConversationV1({
     username: appEnv.services['conversation'][0].credentials.username,
     password: appEnv.services['conversation'][0].credentials.password,
     version_date: ConversationV1.VERSION_DATE_2017_05_26
   });
+  //console.log(conversation);
 }
 
 /***** IBM part *****/
