@@ -64,7 +64,7 @@
         }
     });
     $(function () {
-        var socket = io.connect( "http://localhost:4200");
+        var socket = io.connect(window.location.hostname+":4200");
         socket.emit('new_message', "yo");
         $(document).on("click", '#send_message',function(e) {
             if ($('#the_message').val() != "") {
