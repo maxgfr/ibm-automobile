@@ -1,14 +1,34 @@
 var express = require('express');
 var router = express.Router();
-/* Socket.io*/
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-/* Socket.io*/
 
+/**** CONVERSATION ****/
 router.get('/', function(req, res, next) {
-  res.render('index');
+    res.io.on('connection', function(socket){
+        console.log('Connexion effectuée');
+        socket.on('new_message', function(msg){
+            //console.log('Le message: ' + msg);
+            //res.io.emit('new_message', msg);
+            if(!conversation) {
+                res.send("Pas de conversation...");
+                return;
+            }
+            conversation.message({
+                input: { text: msg },
+                workspace_id: '4f4f881e-d5c9-484e-ba14-1e73ba9dce8c'
+            }, function(err, response) {
+                if (err) {
+                   console.error(err);
+               } else {
+                   //console.log(response);
+                   //console.log(response.output);
+                   res.io.emit('new_message', response.output.text);
+               }
+           });
+        });
+    });
+    res.render('index');
 });
+/**** CONVERSATION ****/
 
 router.get('/display_actor', function(req, res, next) {
   res.render('display_actor');
@@ -71,33 +91,5 @@ router.delete('/get_actor', function(req, res, next) {
 
 });
 /**** CLOUDANT ****/
-
-/**** CONVERSATION ****/
-io.on('connection', function(socket){
-    console.log('Connexion effectuée');
-    socket.on('new_message', function(msg){
-        //console.log('Le message: ' + msg);
-        //io.emit('new_message', msg);
-        if(!conversation) {
-            res.send("Pas de conversation...");
-            return;
-        }
-        conversation.message({
-            input: { text: msg },
-            workspace_id: '4f4f881e-d5c9-484e-ba14-1e73ba9dce8c'
-        }, function(err, response) {
-            if (err) {
-               console.error(err);
-           } else {
-               //console.log(response);
-               //console.log(response.output);
-               io.emit('new_message', response.output.text);
-           }
-       });
-    });
-});
-
-server.listen(4200);
-/**** CONVERSATION ****/
 
 module.exports = router;

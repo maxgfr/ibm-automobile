@@ -9,7 +9,11 @@ var index = require('./routes/index');
 
 var app = express();
 
-var http = require('http');
+/* Socket.io*/
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+/* Socket.io*/
+
 var cfenv = require("cfenv");
 
 /***** IBM part *****/
@@ -76,6 +80,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next){
+  res.io = io;
+  next();
+});
+
 app.use('/', index);
 
 // catch 404 and forward to error handler
@@ -96,4 +105,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports =  {app: app, server: server};
