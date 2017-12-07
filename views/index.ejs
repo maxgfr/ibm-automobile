@@ -65,9 +65,10 @@
     });
     $(function () {
         var socket = io();
-        socket.emit('new_message', "yo");
+        socket.emit('new_message', " ");
         $(document).on("click", '#send_message',function(e) {
             if ($('#the_message').val() != "") {
+                socket.connect();
                 socket.emit('new_message', $('#the_message').val());
                 var currentdate = new Date();
                 var my_message_to_display = '<div class="direct-chat-msg">'+
@@ -99,6 +100,7 @@
                                                 msg +
                                             '</div>'+
                                         '</div>';
+            socket.disconnect();
             $('#chat').append(my_message_to_display);
             $("#chat").animate({ scrollTop: $("#chat")[0].scrollHeight});
         });

@@ -14,16 +14,21 @@ router.get('/', function(req, res, next) {
             }
             conversation.message({
                 input: { text: msg },
-                workspace_id: '4f4f881e-d5c9-484e-ba14-1e73ba9dce8c'
+                workspace_id: '4c490099-b62f-458c-a435-0694a3f65365'
             }, function(err, response) {
                 if (err) {
                    console.error(err);
                } else {
                    //console.log(response);
                    //console.log(response.output);
+                   //console.log(response.output.text);
                    res.io.emit('new_message', response.output.text);
+                   //console.log('response done');
                }
            });
+        });
+        socket.on('disconnect', function(msg){
+            console.log('Déconnexion effectuée' + socket.id);
         });
     });
     res.render('index');
