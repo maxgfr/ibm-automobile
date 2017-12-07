@@ -63,7 +63,7 @@ if (appEnv.services['conversation']) {
     password: appEnv.services['conversation'][0].credentials.password,
     version_date: ConversationV1.VERSION_DATE_2017_05_26
   });
-  console.log(conversation);
+  //console.log(conversation);
 }
 
 /***** IBM part *****/

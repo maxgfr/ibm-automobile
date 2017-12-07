@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
             }
             conversation.message({
                 input: { text: msg },
-                workspace_id: '4c490099-b62f-458c-a435-0694a3f65365'
+                workspace_id: 'd2fc90d8-c914-4705-bbc7-1b5175ab4066'
             }, function(err, response) {
                 if (err) {
                    console.error(err);
