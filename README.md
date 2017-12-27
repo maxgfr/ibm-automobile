@@ -10,6 +10,13 @@ Il faut impérativement renommer le fichier vcap-local-example.json en vcap-loca
 
 ![alt text](https://github.com/maxgfr/ibm-automobile/blob/master/tuto/vcap.png)
 
+Il faudra également ne pas oublier d'installer les dépendances.
+
+
+```
+    npm install
+```
+
 ## Conversation :
 
 ![alt text](https://github.com/maxgfr/ibm-automobile/blob/master/tuto/chatbot.png)
