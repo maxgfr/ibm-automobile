@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var context_array= [];
+var number = 0;
 
 /**** CONVERSATION ****/
 router.get('/', function(req, res, next) {
@@ -14,11 +16,14 @@ router.get('/', function(req, res, next) {
             }
             conversation.message({
                 input: { text: msg },
-                workspace_id: 'd2fc90d8-c914-4705-bbc7-1b5175ab4066'
+                workspace_id: '00bcde6f-43d6-4f33-ac34-caa4f7a1a44e',
+                context : context_array[context_array.length-1]
             }, function(err, response) {
                 if (err) {
                    console.error(err);
                } else {
+                   context_array[number] = response.context;
+                   number++;
                    //console.log(response);
                    //console.log(response.output);
                    //console.log(response.output.text);
