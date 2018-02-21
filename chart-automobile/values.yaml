@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: ibm-automobile
-  tag: stable
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
