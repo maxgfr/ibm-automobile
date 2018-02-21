@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ibm-automobile
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ibm-automobile
+        tier: web
+    spec:
+      containers:
+      - name: ibm-automobile
+        image: mycluster.icp:8500/default/ibm-automobile:latest

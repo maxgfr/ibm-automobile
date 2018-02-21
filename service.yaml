@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: ibm-automobile
+  labels:
+    app: ibm-automobile
+    tier: web
+spec:
+  selector:
+    app: ibm-automobile
+    tier: web
+  type: NopdePort
+  ports:
+     - port: 3000
