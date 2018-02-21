@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "chart-automobile.fullname" . }}
+  labels:
+    app: {{ template "chart-automobile.name" . }}
+    chart: {{ template "chart-automobile.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "chart-automobile.name" . }}
+    release: {{ .Release.Name }}
