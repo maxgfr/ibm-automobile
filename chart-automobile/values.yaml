@@ -4,7 +4,7 @@
 replicaCount: 1
 
 image:
-  repository: default/ibm-automobile
+  repository: mycluster.icp:8500/default/ibm-automobile
   tag: 0.1.0
   pullPolicy: IfNotPresent
 
