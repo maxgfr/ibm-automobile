@@ -1,19 +1,24 @@
-FROM node:carbon
+FROM ibmcom/ibmnode:8
 
-# Create app directory
-WORKDIR /usr/src/app
+ENV NODE_ENV production
+ENV PORT 3000
+# ENV USE_ZIPKIN
+
+# We'll need this for testing the endpoints with helm test
+RUN apt-get update;
+RUN apt-get -y install wget --fix-missing;
+
+WORKDIR "/app"
 
 # Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
-
-RUN npm install
-# If you are building your code for production
-# RUN npm install --only=production
+COPY package.json /app/
+RUN cd /app;
+RUN rm -rf ./node_modules;
+RUN npm install;
 
 # Bundle app source
-COPY . .
+COPY . /app
 
 EXPOSE 3000
-CMD [ "npm", "start" ]
+
+CMD ["npm", "start"]
