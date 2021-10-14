@@ -8,7 +8,7 @@
   "dependencies": {
     "admin-lte": "^2.4.2",
     "body-parser": "~1.18.2",
-    "cfenv": "^1.0.4",
+    "cfenv": "^1.2.4",
     "cloudant": "^1.10.0",
     "consolidate": "^0.15.0",
     "cookie-parser": "~1.4.3",
